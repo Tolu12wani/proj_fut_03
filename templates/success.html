@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Upload Success - Secure Share</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+  <div class="bg-white shadow-lg rounded-2xl p-8 w-full max-w-md text-center">
+    <h1 class="text-2xl font-bold text-green-600 mb-4">✅ File Uploaded Successfully!</h1>
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="bg-green-100 border border-green-300 text-green-800 px-4 py-2 rounded mb-4">
+      {{ messages[0] }} <!-- This will show ✅ File uploaded & encrypted successfully -->
+    </div>
+  {% endif %}
+{% endwith %}
+
+
+    <p class="text-gray-700 mb-6">Your file is safe and ready to download.</p>
+
+    <a href="{{ url_for('download_file', filename=filename) }}"
+       class="inline-block bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-lg font-semibold shadow-md transition">
+       ⬇️ Download File
+    </a>
+
+  </div>
+</body>
+</html>

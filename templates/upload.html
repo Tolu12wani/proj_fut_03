@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Secure File Upload</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+    <div class="bg-white shadow-xl rounded-lg p-8 w-full max-w-md text-center">
+        <h1 class="text-3xl font-bold text-blue-600 mb-6">📂 Secure File Upload</h1>
+        
+        <form action="/upload" method="POST" enctype="multipart/form-data" class="space-y-4">
+            <div>
+                <input type="file" name="file" 
+                       class="block w-full text-sm text-gray-700 border border-gray-300 rounded-lg cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 p-2">
+            </div>
+            <button type="submit" 
+                    class="w-full bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition">
+                Upload File
+            </button>
+        </form>
+        
+        <p class="mt-6 text-gray-500 text-sm">Your files are stored securely 🔒</p>
+
+        <!-- Keep the link inside the same card so it doesn't shift -->
+        <p class="mt-4">
+            <a href="/files" class="text-blue-500 hover:underline">📑 View All Files</a>
+        </p>
+<div class="mt-4 text-right">
+    <a href="{{ url_for('logout') }}" 
+       class="text-red-500 hover:underline">Logout</a>
+</div>
+
+</body>
+</html>

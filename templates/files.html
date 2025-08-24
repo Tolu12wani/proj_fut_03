@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Uploaded Files</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white shadow-xl rounded-lg p-8 w-full max-w-lg">
+        <h1 class="text-2xl font-bold text-blue-600 mb-6">📑 Uploaded Files</h1>
+
+        {% if files %}
+            <ul class="space-y-3">
+                {% for file in files %}
+                <li class="flex justify-between items-center p-3 bg-gray-50 rounded-md shadow-sm">
+                    <span class="text-gray-700">{{ file }}</span>
+                    <div class="flex space-x-2">
+                        <!-- Download -->
+                        <a href="/download/{{ file }}" 
+                           class="bg-green-500 text-white px-3 py-1 rounded-md hover:bg-green-600 transition">
+                            Download
+                        </a>
+                        <!-- Delete -->
+                        <form action="/delete/{{ file }}" method="POST" onsubmit="return confirm('Delete this file?');">
+                            <button type="submit" 
+                                    class="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 transition">
+                                Delete
+                            </button>
+                        </form>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="text-gray-500">No files uploaded yet.</p>
+        {% endif %}
+
+        <div class="mt-6 text-center">
+<a href="{{ url_for('upload_file') }}" class="text-blue-500 hover:underline">⬅ Back to Upload</a>
+
+        </div>
+    </div>
+</body>
+</html>
